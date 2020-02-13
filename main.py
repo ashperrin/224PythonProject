@@ -4,6 +4,8 @@ from selenium.webdriver.common.keys import Keys # for sending keys
 from selenium.webdriver.chrome.options import Options # for adding headless option
 
 def main():
+
+
     options = Options()
     options.headless = False # make true if you do not want to not want to see the browser
     driver = webdriver.Chrome(chrome_options=options)
