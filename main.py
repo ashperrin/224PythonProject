@@ -6,9 +6,9 @@ from selenium.webdriver.chrome.options import Options # for adding headless opti
 def main():
 
 
-    options = Options()
-    options.headless = False # make true if you do not want to not want to see the browser
-    driver = webdriver.Chrome(chrome_options=options)
+   # options = Options()
+   # options.headless = False # make true if you do not want to not want to see the browser
+    driver = webdriver.Chrome()
     driver.get('https://www.amazon.com')
 
     input = "fallout 4 game of the year"
