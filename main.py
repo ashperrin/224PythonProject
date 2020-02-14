@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import time
 import sys
@@ -35,10 +35,6 @@ def parseArguements():
     #run with firefox 32bit
     if len(sys.argv) >= 2 and sys.argv[1] == "-f":
         driver=webdriver.Firefox()
-
-    if len(sys.argv) >= 3 and sys.argv[2] == "-h":
-        options.headless = False
-        driver = webdriver.Chrome(chrome_options=options)
 
     return driver
 
