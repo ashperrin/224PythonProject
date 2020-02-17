@@ -4,7 +4,8 @@ import time
 import sys
 from selenium import webdriver # main webdriver
 from selenium.webdriver.common.keys import Keys # for sending keys
-from selenium.webdriver.chrome.options import Options # for adding headless option
+from selenium.webdriver.chrome.options import Options # for chrome
+from selenium.webdriver.firefox.options import Options as FirefoxOptions # for firefox
 
 def main():
     driver = parseArguements()
@@ -33,8 +34,14 @@ def parseArguements():
         driver = webdriver.Chrome(chrome_options=options)
 
     #run with firefox 32bit
-    if len(sys.argv) >= 2 and sys.argv[1] == "-f":
+    if len(sys.argv) == 2 and sys.argv[1] == "-f":
         driver=webdriver.Firefox()
+
+    #run with firefox 32bit headless
+    if len(sys.argv) ==3 and sys.argv[2] == "-h":
+        options = FirefoxOptions()
+        options.add_argument("--headless")
+        driver = webdriver.Firefox(options=options)
 
     return driver
 
