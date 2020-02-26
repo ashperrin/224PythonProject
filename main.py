@@ -39,11 +39,7 @@ def userLogin():
 # TODO get better filtering
 def getItemName(name, driver):
     driver.implicitly_wait(10)
-    item = driver.find_elements_by_class_name('a-size-base-plus')
-    if len(item) > 0:
-        return item[0].text
-
-    item = driver.find_elements_by_class_name('a-size-medium')
+    item = driver.find_elements_by_xpath("//*[@class='a-link-normal a-text-normal']")
     if len(item) > 0:
         return item[0].text
 
