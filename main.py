@@ -2,10 +2,13 @@
 
 import time
 import sys
+
 from selenium import webdriver # main webdriver
 from selenium.webdriver.common.keys import Keys # for sending keys
 from selenium.webdriver.chrome.options import Options # for chrome
 from selenium.webdriver.firefox.options import Options as FirefoxOptions # for firefox
+
+from db_connector import shop_db
 
 def main():
 
@@ -13,6 +16,17 @@ def main():
 
     userInput = input("Enter any item you would like to search for on Amazon : ")
     driver = parseArguements()
+
+    # Add the search to user's search history in the database
+    # NOTE: Adjust UserId to the logged-in user's once login is implemented
+    
+    query = "INSERT INTO History(UserId, RecentSearches) VALUES (1, " + "'" + str(userInput) + "'" + ")"
+    cursor = shop_db.cursor()
+    cursor.execute(query)
+
+    # Commit new entry into the database
+    shop_db.commit()
+
     driver.get('https://www.amazon.com')
 
     # search amazon
