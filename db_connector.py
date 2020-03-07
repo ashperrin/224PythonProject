@@ -1,5 +1,6 @@
 import mysql.connector
 
+#NOTE: sudo apt-get install python3-mysql.connector
 shop_db = mysql.connector.connect(host="127.0.0.1",
                                 database="amazon_bot_db",
                                 user="root",
