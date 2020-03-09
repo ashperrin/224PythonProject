@@ -29,7 +29,9 @@ def main():
     # Search
     search(driver)
 
-
+    # Time to live
+    time.sleep(5)
+    driver.close()
 
 def parseArguements():
     options = Options()

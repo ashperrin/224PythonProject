@@ -1,7 +1,6 @@
 # search amazon
 from selenium import webdriver # main webdriver
 from selenium.webdriver.common.keys import Keys # for sending keys
-import time
 
 def search(driver):
     userInput = input("Enter any item you would like to search for on Amazon : ")
@@ -16,7 +15,7 @@ def search(driver):
     #shop_db.commit()
     driver.get('https://www.amazon.com')
     driver.implicitly_wait(5)
-    
+
     search_box = driver.find_element_by_id("twotabsearchtextbox")
     search_box.send_keys(userInput)
     search_box.send_keys(Keys.RETURN)
@@ -29,9 +28,6 @@ def search(driver):
     if price != "PRICE NOT FOUND":
         print("Price: " + price[0] + "." + price[1])
         priceAsDouble = int(price[0]) + (int(price[1]) / 100)
-
-        time.sleep(10) # time to live
-        driver.close()
 
 def getItemName(name, driver):
     driver.implicitly_wait(10)
