@@ -19,7 +19,14 @@ def login(driver):
     email_box.send_keys(username)
     email_box.send_keys(Keys.RETURN)
 
+    # Incorrect username
     driver.implicitly_wait(3)
+    item = driver.find_elements_by_class("a-alert-heading")
+
+    if len(item) >= 1:
+        print("Error: Incorrect Password or Email, try again")
+        login() # Try again
+
     passwd_box = driver.find_element_by_id("ap_password")
     passwd_box.send_keys(password)
     passwd_box.send_keys(Keys.RETURN)
@@ -38,8 +45,8 @@ def login(driver):
     item = driver.find_elements_by_xpath("//*[@class='a-row a-spacing-small']")
 
     if len(item) >= 1 and item[0].text.lower() == "authentication required":
-        print("Error, 2FA is not supported. Please disable")
-        return -1
+        print("Error, 2FA is not supported. Please disable or continue without login")
+        return 1
 
 
     # TODO connect to database

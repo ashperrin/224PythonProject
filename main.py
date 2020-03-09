@@ -22,10 +22,12 @@ def main():
 
     # Login
     print("You are not logged in")
-    login(driver)
+    log = input("Login? (y/n): ")
+    if log.lower() == 'y':
+        login(driver)
 
     # Search
-
+    search(driver)
 
 
 

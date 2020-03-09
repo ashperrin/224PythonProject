@@ -1,6 +1,7 @@
 # search amazon
 from selenium import webdriver # main webdriver
 from selenium.webdriver.common.keys import Keys # for sending keys
+import time
 
 def search(driver):
     userInput = input("Enter any item you would like to search for on Amazon : ")
@@ -13,7 +14,9 @@ def search(driver):
 
     # Commit new entry into the database
     #shop_db.commit()
-
+    driver.get('https://www.amazon.com')
+    driver.implicitly_wait(5)
+    
     search_box = driver.find_element_by_id("twotabsearchtextbox")
     search_box.send_keys(userInput)
     search_box.send_keys(Keys.RETURN)
