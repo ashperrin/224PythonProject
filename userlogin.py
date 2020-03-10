@@ -23,7 +23,7 @@ def login(driver):
     driver.implicitly_wait(3)
     alert = driver.find_elements_by_class_name("a-alert-heading")
 
-    if len(alert) >= 1:
+    if len(alert) >= 1 and alert[0].text.lower() == "there was a problem":
         print("Error: Incorrect Password or Email, try again")
         print()
         login(driver) # Try again
@@ -37,7 +37,7 @@ def login(driver):
     driver.implicitly_wait(3)
     alert = driver.find_elements_by_class_name("a-alert-heading")
 
-    if len(alert) >= 1:
+    if len(alert) >= 1 and alert[0].text.lower() == "there was a problem":
         print("Error: Incorrect Password or Email, try again")
         print()
         login(driver) # Try again
@@ -46,20 +46,18 @@ def login(driver):
     driver.implicitly_wait(3)
     alert = driver.find_elements_by_xpath("//*[@class='a-row a-spacing-small']")
 
-    if len(item) >= 1 and item[0].text.lower() == "authentication required":
+    if len(alert) >= 1 and alert[0].text.lower() == "authentication required":
         print("Error, 2FA is not supported. Please disable or continue without login")
         return 1
 
-
-    # TODO connect to database
-
-    #query = "INSERT INTO User(UserId, Email, Password, HistoryId) VALUES (userid, username, password, 0)"
-    #cursor = shop_db.cursor()
-    #cursor.execute(query)
+    # DATABASE
+    userid = getId(username);
+    cursor = shop_db.cursor()
+    cursor.execute("INSERT INTO User (UserId, Email, Password) VALUES (%s, %s, %s)", (userid, username, password));
 
     #Commit new entry into the database
-    #shop_db.commit()
-    #driver.get('https://www.amazon.com')
+    shop_db.commit()
+
 
 
 def getId(username):
