@@ -20,13 +20,13 @@ def login(driver):
     email_box.send_keys(Keys.RETURN)
 
     # Incorrect username
-    driver.implicitly_wait(3)
+    driver.implicitly_wait(5)
     alert = driver.find_elements_by_class_name("a-alert-heading")
 
     if len(alert) >= 1 and alert[0].text.lower() == "there was a problem":
         print("Error: Incorrect Password or Email, try again")
         print()
-        login(driver) # Try again
+        return login(driver) # Try again
 
     passwd_box = driver.find_element_by_id("ap_password")
     passwd_box.send_keys(password)
@@ -34,19 +34,19 @@ def login(driver):
 
 
     # Incorrect Password
-    driver.implicitly_wait(3)
+    driver.implicitly_wait(5)
     alert = driver.find_elements_by_class_name("a-alert-heading")
 
-    if len(alert) >= 1 and alert[0].text.lower() == "there was a problem":
+    if len(alert) >= 1 and (alert[0].text.lower() == "there was a problem" or alert[0].text.lower() == "important message!"):
         print("Error: Incorrect Password or Email, try again")
         print()
-        login(driver) # Try again
+        return login(driver) # Try again
 
     # Requires 2FA
     driver.implicitly_wait(3)
     alert = driver.find_elements_by_xpath("//*[@class='a-row a-spacing-small']")
 
-    if len(alert) >= 1 and alert[0].text.lower() == "authentication required":
+    if len(alert) >= 1 and (alert[0].text.lower() == "authentication required" or alert[0].text.lower() == "important message!"):
         print("Error, 2FA is not supported. Please disable or continue without login")
         return 1
 

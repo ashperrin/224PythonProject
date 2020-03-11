@@ -9,7 +9,7 @@ def search(driver):
 
     # Add the search to user's search history in the database
     # NOTE: Adjust UserId to the logged-in user's once login is implemented
-    #query = "INSERT INTO History(UserId, RecentSearches) VALUES ('%s', '%s')" % (str(1), str(userInput))
+    query = "INSERT INTO History(UserId, RecentSearches) VALUES (\'%s', '%s')" % (str(1), str(userInput))
     #cursor = shop_db.cursor()
     #cursor.execute(query);
     # Commit new entry into the database
