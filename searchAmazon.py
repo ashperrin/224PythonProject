@@ -2,14 +2,19 @@
 from selenium import webdriver # main webdriver
 from selenium.webdriver.common.keys import Keys # for sending keys
 
-from db_connector import shop_db
+from db_connector import connect
 
-def search(driver):
-    userInput = input("Enter any item you would like to search for on Amazon : ")
+def search(driver, search_in = 0, database = 0):
+
+    if search_in == 0:
+        userInput = input("Enter any item you would like to search for on Amazon : ")
+    else:
+        userInput = search_in
 
     # Add the search to user's search history in the database
     # NOTE: Adjust UserId to the logged-in user's once login is implemented
-    query = "INSERT INTO History(UserId, RecentSearches) VALUES (\'%s', '%s')" % (str(1), str(userInput))
+    if(database != 0):
+        query = "INSERT INTO History(UserId, RecentSearches) VALUES (\'%s', '%s')" % (str(1), str(userInput))
     #cursor = shop_db.cursor()
     #cursor.execute(query);
     # Commit new entry into the database
@@ -21,15 +26,25 @@ def search(driver):
     search_box = driver.find_element_by_id("twotabsearchtextbox")
     search_box.send_keys(userInput)
     search_box.send_keys(Keys.RETURN)
-    print()
+    if(search_in == 0):
+        print()
 
     # get info of first item
     name = getItemName(userInput, driver)
     price = getItemPrice(driver)
-    print("Item: " + name)
+
+    output = ""
+    if(search_in  == 0):
+        print("Item: " + name)
+    output += "Item: " + name + "\n"
+
     if price != "PRICE NOT FOUND":
-        print("Price: " + price[0] + "." + price[1])
+        if(search_in == 0):
+            print("Price: " + price[0] + "." + price[1])
+        output += "Price: " + price[0] + "." + price[1] + "\n\n"
         priceAsDouble = int(price[0]) + (int(price[1]) / 100)
+
+    return output
 
 def getItemName(name, driver):
     driver.implicitly_wait(10)

@@ -13,36 +13,37 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions # for f
 from searchAmazon import search
 from userlogin import login
 
-def main():
-    # Welcome
-    print("\tWelcome to your Amazon personal shopper bot!\n\t\t\tHappy shopping")
-    print()
+def main(nonterm, search_term):
 
-    driver = parseArguements()
+    # Welcome
+
+    driver = parseArguements(nonterm)
 
     # Login
-    print("You are not logged in")
-    log = input("Login? (y/n): ")
-    if log.lower() == 'y':
-        login(driver)
+    if nonterm == 0:
+        print("You are not logged in")
+        log = input("Login? (y/n): ")
+        if log.lower() == 'y':
+            login(driver)
 
     # Search
-    search(driver)
+    output = search(driver, search_term)
 
     # Time to live
-    time.sleep(5)
+    #time.sleep(5)
     driver.close()
+    return output
 
-def parseArguements():
+def parseArguements(nonterm = 0):
     options = Options()
 
     # run with chrome GUI (default)
-    if len(sys.argv) == 1:
+    if len(sys.argv) == 1 and nonterm == 0:
         options.headless = False
         driver = webdriver.Chrome(chrome_options=options)
 
     #run headless chrome
-    if len(sys.argv) == 2 and sys.argv[1] == "-h":
+    if nonterm == 1 or  len(sys.argv) == 2 and sys.argv[1] == "-h":
         options.headless = True
         driver = webdriver.Chrome(chrome_options=options)
 
@@ -60,4 +61,4 @@ def parseArguements():
 
 
 if __name__ == '__main__':
-    main()
+    main(0, 0)
