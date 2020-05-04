@@ -10,6 +10,7 @@ def connect():
                                 user="root",
                                 passwd="1890BTz!")
     print("Connected to " + str(shop_db))
+    return shop_db
 
 
 # A test to fetch all data from the User datatable

@@ -13,8 +13,8 @@ def search(driver, userid, database, search_in = 0):
 
     # Add the search to user's search history in the database
     if database != 0:
-        db_connector.connect()
-        if userid != -1 :
+        if userid != 1:
+            shop_db = db_connector.connect()
             query = "INSERT INTO History(UserId, RecentSearches) VALUES (\'%s', '%s')" % (userid, str(userInput))
             shop_db.commit()
 
