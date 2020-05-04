@@ -44,12 +44,12 @@ def parseArguements(nonterm = 0):
     #run headless chrome (default)
     if nonterm == 1 or len(sys.argv) == 1:
         options.headless = True
-        driver = webdriver.Chrome(executable_path=r"./drivers/chromedriver", chrome_options=options)
+        driver = webdriver.Chrome( chrome_options=options)
 
     # run with chrome GUI
     if len(sys.argv) == 2 and sys.argv[1] == "-g":
         options.headless = False
-        driver = webdriver.Chrome(executable_path=r"./drivers/chromedriver", chrome_options=options)
+        driver = webdriver.Chrome( chrome_options=options)
 
     #run with firefox 32bit
     if len(sys.argv) == 2 and sys.argv[1] == "-f":

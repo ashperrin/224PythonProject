@@ -11,7 +11,7 @@ TK_SILENCE_DEPRECATION = 1                    # Gets rid of warning message abou
 win = tk.Tk()                                 # Creating tk window object
 win.geometry("1000x500")                       # Setting width & height of window
 win.title("BotShopp")                        # titling window
-#win.color("grey")                            # Potential to set entire window background color, possibly a light grey ?
+win.configure(bg = "grey")                            # Potential to set entire window background color, possibly a light grey ?
 
 cur_display = 0
 
@@ -29,7 +29,7 @@ def send_input():
      search.delete("1.0", "end-1c")
      output.insert("1.0", output_item)
 
-welcome = tk.Label(win,                           # Creating label with specifications
+welcome = tk.Label(win,                           # Creating welcome label with specifications
     text = "  Welcome to your Amazon personal shopper bot!",
     font = "Calibri 22",
     relief = "raised",
@@ -49,7 +49,6 @@ search_button = tk.Button(frame,
     text = "Search",
     font = "Calibri 17",
     relief = "raised",
-    foreground = "white",
     command=lambda: send_input())
 
 search_button.pack(padx=5, pady=10, side=tk.LEFT)

@@ -8,7 +8,7 @@ def login(driver):
 
     username, password = prompts()
 
-    db_connector.connect() # connect to database
+    #db_connector.connect() # connect to database
     driver.get('https://www.amazon.com')
     driver.implicitly_wait(10)
 
@@ -52,15 +52,14 @@ def login(driver):
         return 1
 
     # DATABASE
-    userid = getId(username);
-    cursor = shop_db.cursor()
-    cursor.execute("INSERT INTO User (UserId, Email, Password) VALUES (%s, %s, %s)", (userid, username, password));
+    #userid = getId(username);
+    #cursor = shop_db.cursor()
+    #cursor.execute("INSERT INTO User (UserId, Email, Password) VALUES (%s, %s, %s)", (userid, username, password));
 
     #Commit new entry into the database
-    shop_db.commit()
+    #shop_db.commit()
 
     return userid
-
 
 
 def getId(username):
