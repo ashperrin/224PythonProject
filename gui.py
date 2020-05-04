@@ -38,7 +38,7 @@ welcome = tk.Label(win,                           # Creating welcome label with 
 welcome.pack()
 
 frame = tk.Frame(win,
-    bg = "gray",
+    bg = "grey",
     height = 500,
     width = 100,
     relief = "raised",)
