@@ -3,14 +3,13 @@ import mysql.connector
 #NOTE: sudo apt-get install python3-mysql.connector
 
 
-def connect(enabled = 0):
-    if enabled != 0:
-        shop_db = mysql.connector.connect(host="127.0.0.1",
+
+def connect():
+    shop_db = mysql.connector.connect(host="127.0.0.1",
                                 database="amazon_bot_db",
                                 user="root",
-                                passwd="1890BTz!"
-                    )
-        print("Connected to " + str(shop_db))
+                                passwd="1890BTz!")
+    print("Connected to " + str(shop_db))
 
 
 # A test to fetch all data from the User datatable

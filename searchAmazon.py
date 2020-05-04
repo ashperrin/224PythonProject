@@ -2,9 +2,9 @@
 from selenium import webdriver # main webdriver
 from selenium.webdriver.common.keys import Keys # for sending keys
 
-from db_connector import connect
+import db_connector
 
-def search(driver, search_in = 0, database = 0):
+def search(driver, userid, database, search_in = 0):
 
     if search_in == 0:
         userInput = input("Enter any item you would like to search for on Amazon : ")
@@ -12,20 +12,19 @@ def search(driver, search_in = 0, database = 0):
         userInput = search_in
 
     # Add the search to user's search history in the database
-    # NOTE: Adjust UserId to the logged-in user's once login is implemented
-    if(database != 0):
-        query = "INSERT INTO History(UserId, RecentSearches) VALUES (\'%s', '%s')" % (str(1), str(userInput))
-    #cursor = shop_db.cursor()
-    #cursor.execute(query);
-    # Commit new entry into the database
+    if database != 0:
+        db_connector.connect()
+        if userid != -1 :
+            query = "INSERT INTO History(UserId, RecentSearches) VALUES (\'%s', '%s')" % (userid, str(userInput))
+            shop_db.commit()
 
-    #shop_db.commit()
     driver.get('https://www.amazon.com')
     driver.implicitly_wait(5)
 
     search_box = driver.find_element_by_id("twotabsearchtextbox")
     search_box.send_keys(userInput)
     search_box.send_keys(Keys.RETURN)
+
     if(search_in == 0):
         print()
 

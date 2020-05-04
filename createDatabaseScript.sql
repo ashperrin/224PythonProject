@@ -1,4 +1,4 @@
-#CREATE DATABASE amazon_bot_db;
+CREATE DATABASE amazon_bot_db;
 
 USE amazon_bot_db;
 

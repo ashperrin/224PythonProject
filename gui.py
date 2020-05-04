@@ -1,9 +1,10 @@
+#!/usr/bin/python3
 # @author Ashley Perrin
 # 4/27/2020
 # CS 224 Python Project separate gui
 
 import tkinter as tk
-import main as amsearch
+import term as amsearch
 
 TK_SILENCE_DEPRECATION = 1                    # Gets rid of warning message about TK version
     # GUI Code Elements
@@ -22,7 +23,10 @@ def send_input():
          output.delete("1.0", "end-1c")
 
      input = search.get("1.0","end-1c")
+     #search.delete("1.0", "end-1c")
+     search.insert("1.0", "Searching amazon please wait...")
      output_item = amsearch.main(1, input)
+     search.delete("1.0", "end-1c")
      output.insert("1.0", output_item)
 
 welcome = tk.Label(win,                           # Creating label with specifications

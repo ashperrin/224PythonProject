@@ -1,6 +1,6 @@
 import getpass
 
-from db_connector import connect
+import db_connector
 from selenium import webdriver # main webdriver
 from selenium.webdriver.common.keys import Keys # for sending keys
 
@@ -8,7 +8,7 @@ def login(driver):
 
     username, password = prompts()
 
-    connect() # connect to database
+    db_connector.connect() # connect to database
     driver.get('https://www.amazon.com')
     driver.implicitly_wait(10)
 
@@ -58,6 +58,8 @@ def login(driver):
 
     #Commit new entry into the database
     shop_db.commit()
+
+    return userid
 
 
 
