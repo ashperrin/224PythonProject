@@ -34,14 +34,22 @@ def search(driver, userid, database, search_in = 0):
 
     output = ""
     if(search_in  == 0):
-        print("Item: " + name)
-    output += "Item: " + name + "\n"
+        print("Item: " + name[0])
+        print("Price: " + price[0] + "." + price[1])
+        print("Item: " + name[1])
+        print("Price: " + price[2] + "." + price[3])
+        print("Item: " + name[2])
+        print("Price: " + price[4] + "." + price[5])
 
-    if price != "PRICE NOT FOUND":
-        if(search_in == 0):
-            print("Price: " + price[0] + "." + price[1])
-        output += "Price: " + price[0] + "." + price[1] + "\n\n"
-        priceAsDouble = int(price[0]) + (int(price[1]) / 100)
+
+    output += "Item: " + name[0] + "\n"
+    output += "Price: " + price[0] + "." + price[1] + "\n\n"
+    output += "Item: " + name[1] + "\n"
+    output += "Price: " + price[2] + "." + price[3] + "\n\n"
+    output += "Item: " + name[2] + "\n"
+    output += "Price: " + price[4] + "." + price[5] + "\n\n"
+
+    priceAsDouble = int(price[0]) + (int(price[1]) / 100)
 
     return output
 
@@ -49,7 +57,9 @@ def getItemName(name, driver):
     driver.implicitly_wait(10)
     item = driver.find_elements_by_xpath("//*[@class='a-link-normal a-text-normal']")
     if len(item) > 0:
-        return item[0].text
+        return item[0].text,item[1].text,item[2].text
+
+
     return "ITEM NOT FOUND"
 
 def getItemPrice(driver):
@@ -58,6 +68,6 @@ def getItemPrice(driver):
     priceDec = driver.find_elements_by_class_name('a-price-fraction')
 
     if(len(priceWhole) > 0 and len(priceDec) > 0):
-        return priceWhole[0].text, priceDec[0].text
+        return priceWhole[0].text, priceDec[0].text, priceWhole[1].text, priceDec[1].text, priceWhole[2].text, priceDec[2].text
 
     return "PRICE NOT FOUND"
