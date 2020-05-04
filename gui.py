@@ -17,8 +17,8 @@ cur_display = 0
 
 def send_input():
      global cur_display
-     cur_display = cur_display +  1
-     if(cur_display > 3):
+     cur_display =cur_display +  1
+     if(cur_display == 1):
          cur_display =0
          output.delete("1.0", "end-1c")
 
