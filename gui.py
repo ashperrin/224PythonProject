@@ -5,14 +5,14 @@
 
 import tkinter as tk
 import term as amsearch
+from PIL import ImageTk, Image
 
 TK_SILENCE_DEPRECATION = 1                    # Gets rid of warning message about TK version
     # GUI Code Elements
 win = tk.Tk()                                 # Creating tk window object
-win.geometry("1000x500")                       # Setting width & height of window
+win.geometry("1000x600")                       # Setting width & height of window
 win.title("BotShopp")                        # titling window
-win.configure(bg = "grey")                            # Potential to set entire window background color, possibly a light grey ?
-
+win.configure(bg = "grey")                    # sets window color grey
 cur_display = 0
 
 def send_input():
@@ -30,9 +30,11 @@ def send_input():
      output.insert("1.0", output_item)
 
 welcome = tk.Label(win,                           # Creating welcome label with specifications
-    text = "  Welcome to your Amazon personal shopper bot!",
-    font = "Calibri 22",
+    text = "Welcome to your Amazon personal shopper bot!\n Enter any item you'd like to search for:",
+    font = "Ayuthaya 24",
     relief = "raised",
+    bd = 5,
+    width = 80,
     foreground = "white",
     background = "blue")
 welcome.pack()
@@ -47,51 +49,24 @@ frame.pack(padx=5, pady=10)
 
 search_button = tk.Button(frame,
     text = "Search",
-    font = "Calibri 17",
+    bd = 3,
+    font = "Ayuthaya 17",
     relief = "raised",
-    command=lambda: send_input())
+    command = lambda: send_input())
 
 search_button.pack(padx=5, pady=10, side=tk.LEFT)
 
 search = tk.Text(frame,
     bg = "white",
+    bd = 5,
     foreground = "black",
-    font = "Calibri 17",
-    width = 40,
+    font = "Ayuthaya 17",
+    width = 55,
     height = 1,
-    relief = "raised",
+    relief = "groove",
     )
 
 search.pack(padx=5, pady=10, side=tk.LEFT)
-
-
-login_frame = tk.Frame(frame,
-    bg = "gray",
-    height = 100,
-    width = 200,
-    relief = "raised",)
-
-login_frame.pack(padx=5, pady=10, side=tk.RIGHT)
-
-username = tk.Entry(login_frame,
-    bg = "sky blue",
-    relief = "raised",
-    text = "Email Login:\nPassword:",
-    font = "Calibri 15")
-
-username.pack()
-
-password = tk.Entry(login_frame,
-   bg = "sky blue",
-    relief = "raised",
-    text = "Password:",
-    font = "Calibri 15")
-
-password.pack()
-
-
-login = tk.Button(login_frame, text="Login")
-login.pack()
 
 output_frame = tk.Frame(win,
     bg = "gray",
@@ -103,8 +78,9 @@ output_frame.pack()
 
 output= tk.Text(output_frame,
     bg = "white",
+    bd = 5,
     foreground = "black",
-    font = "Calibri 17",
+    font = "Ayuthaya 17",
     #state='disabled',
     width = 100,
     height = 10,
@@ -112,8 +88,12 @@ output= tk.Text(output_frame,
     )
 output.pack(padx=5, pady=10, side=tk.LEFT)
 
+load = Image.open("avail.png")
+loadsized = load.resize((190,125))
+render = ImageTk.PhotoImage(loadsized)
+pane = tk.Label(win, image = render)
+pane.image = render
 
-#f.pack()
-#un.pack()
+pane.pack()
 
 win.mainloop()                                 # Runs all aspects of gui`
