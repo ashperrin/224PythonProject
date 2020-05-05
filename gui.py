@@ -17,9 +17,9 @@ cur_display = 0
 
 def send_input():
      global cur_display
-     cur_display =cur_display +  1
+     cur_display = cur_display +  1
      if(cur_display == 1):
-         cur_display =0
+         cur_display = 0
          output.delete("1.0", "end-1c")
 
      input = search.get("1.0","end-1c")
@@ -32,24 +32,24 @@ def send_input():
 welcome = tk.Label(win,                           # Creating welcome label with specifications
     text = "Welcome to your Amazon personal shopper bot!\n Enter any item you'd like to search for:",
     font = "Ayuthaya 24",
-    relief = "raised",
+    relief = "groove",
     bd = 5,
     width = 80,
     foreground = "white",
-    background = "blue")
+    background = "navy blue")
 welcome.pack()
 
 frame = tk.Frame(win,
     bg = "grey",
     height = 500,
     width = 100,
-    relief = "raised",)
+    relief = "groove",)
 
 frame.pack(padx=5, pady=10)
 
 search_button = tk.Button(frame,
     text = "Search",
-    bd = 3,
+    bd = 5,
     font = "Ayuthaya 17",
     relief = "raised",
     command = lambda: send_input())
@@ -57,7 +57,7 @@ search_button = tk.Button(frame,
 search_button.pack(padx=5, pady=10, side=tk.LEFT)
 
 search = tk.Text(frame,
-    bg = "white",
+    bg = "khaki",
     bd = 5,
     foreground = "black",
     font = "Ayuthaya 17",
@@ -72,7 +72,7 @@ output_frame = tk.Frame(win,
     bg = "gray",
     height = 500,
     width = 200,
-    relief = "raised",)
+    relief = "groove",)
 
 output_frame.pack()
 
@@ -84,7 +84,7 @@ output= tk.Text(output_frame,
     #state='disabled',
     width = 100,
     height = 10,
-    relief = "raised",
+    relief = "groove",
     )
 output.pack(padx=5, pady=10, side=tk.LEFT)
 
