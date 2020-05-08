@@ -10,7 +10,7 @@ from PIL import ImageTk, Image
 TK_SILENCE_DEPRECATION = 1                    # Gets rid of warning message about TK version
     # GUI Code Elements
 win = tk.Tk()                                 # Creating tk window object
-win.geometry("1000x600")                       # Setting width & height of window
+win.geometry("1000x800")                       # Setting width & height of window
 win.title("BotShopp")                        # titling window
 win.configure(bg = "grey")                    # sets window color grey
 cur_display = 0
@@ -23,8 +23,6 @@ def send_input():
          output.delete("1.0", "end-1c")
 
      input = search.get("1.0","end-1c")
-     #search.delete("1.0", "end-1c")
-     search.insert("1.0", "Searching amazon please wait...")
      output_item = amsearch.main(1, input)
      search.delete("1.0", "end-1c")
      output.insert("1.0", output_item)

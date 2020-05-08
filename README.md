@@ -6,13 +6,14 @@ Gabe Veldboom, Thomas Lynaugh, Ashley Perrin
 
 
 #### Dependencies
-selenium --- pip3 install selenium <br/>
-mysql connector --- sudo apt-get install python3-mysql.connector <br/>
-tkinter --- sudo apt-get install python3-tk <br/>
+selenium  <br/>
+mysql connector <br/>
+tkinter <br/>
+PIL <br/>
 
 ###Mysql 
 mysql needs to be installed and sql script needs to be run to use database features  
-
+then the database flag can be set to true
 
 #### Example GUI Usage:
 python3 gui.py <br/>

@@ -29,11 +29,12 @@ def search(driver, userid, database, search_in = 0):
         print()
 
     # get info of first item
-    name = getItemName(userInput, driver)
+    name = getItemName(driver)
     price = getItemPrice(driver)
 
     output = ""
-    if(search_in  == 0):
+
+    if search_in  == 0:
         print("Item: " + name[0])
         print("Price: " + price[0] + "." + price[1])
         print("Item: " + name[1])
@@ -53,7 +54,7 @@ def search(driver, userid, database, search_in = 0):
 
     return output
 
-def getItemName(name, driver):
+def getItemName(driver):
     driver.implicitly_wait(10)
     item = driver.find_elements_by_xpath("//*[@class='a-link-normal a-text-normal']")
     if len(item) > 0:

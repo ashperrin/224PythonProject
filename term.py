@@ -2,7 +2,7 @@
 
 # standard
 import sys
-
+import time
 # external
 from selenium import webdriver # main webdriver
 from selenium.webdriver.chrome.options import Options # for chrome
@@ -30,11 +30,10 @@ def main(nonterm, search_term):
           userid =login(driver)
 
     # Search
-    #TODO figure if mysql installed
     use_database = 0
     output = search(driver, userid, use_database, search_term)
 
-
+    time.sleep(3)
     driver.close()
     return output
 
@@ -44,22 +43,22 @@ def parseArguements(nonterm = 0):
     #run headless chrome (default)
     if nonterm == 1 or len(sys.argv) == 1:
         options.headless = True
-        driver = webdriver.Chrome( chrome_options=options)
+        driver = webdriver.Chrome('./drivers/chromedriver', chrome_options=options)
 
     # run with chrome GUI
     if len(sys.argv) == 2 and sys.argv[1] == "-g":
         options.headless = False
-        driver = webdriver.Chrome( chrome_options=options)
+        driver = webdriver.Chrome('./drivers/chromedriver', chrome_options=options)
 
     #run with firefox 32bit
     if len(sys.argv) == 2 and sys.argv[1] == "-f":
-        driver=webdriver.Firefox(executable_path=r"./drivers/geckodriver")
+        driver=webdriver.Firefox('./drivers/geckodriver')
 
     #run with firefox 32bit headless
     if len(sys.argv) ==3 and sys.argv[2] == "-h":
         options = FirefoxOptions()
         options.add_argument("--headless")
-        driver = webdriver.Firefox(executable_path=r"./drivers/geckodriver", options=options)
+        driver = webdriver.Firefox('./drivers/geckodriver', options=options)
 
     return driver
 
