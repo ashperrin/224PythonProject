@@ -14,7 +14,7 @@ PIL <br/>
 Note: These should be already included in the code directory but if you cannot get it to run you <br/>
 may have to pip install these. If you run into any problems please email one of us <br/>
 
-###Mysql 
+### Mysql 
 mysql needs to be installed and sql script needs to be run to use database features  <br/>
 otherwise it does not use them. If mysql is not installed flag is false by default so it does not crash <br/>
 
